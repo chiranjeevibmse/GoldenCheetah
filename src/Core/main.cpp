@@ -171,7 +171,7 @@ void nostderr(QString dir)
 // Also creates singleton instances prior to application launching
 //
 int
-main(int argc, char *argv[])
+main_(int argc, char *argv[])
 {
     int ret=2; // return code from qapplication, default to error
 

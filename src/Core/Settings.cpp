@@ -39,12 +39,15 @@ int OperatingSystem = OPENBSD;
 static GSettings *GetApplicationSettings()
 {
   GSettings *settings;
+    //Saar Comment
+  /*
   QDir home = QDir();
     //First check to see if the Library folder exists where the executable is (for USB sticks)
   if(!home.exists("Library/GoldenCheetah"))
     settings = new GSettings(GC_SETTINGS_CO, GC_SETTINGS_APP);
   else
-    settings = new GSettings(home.absolutePath()+"/gc", QSettings::IniFormat);
+    settings = new GSettings(home.absolutePath()+"/gc", QSettings::IniFormat);*/
+  settings = new GSettings();
   return settings;
 }
 
@@ -108,6 +111,13 @@ GSettings::GSettings(QString org, QString app) : newFormat(true){
 
 GSettings::GSettings(QString file, QSettings::Format format) : newFormat(false){
     systemsettings = new QSettings(file,format);
+}
+
+GSettings::GSettings() : newFormat(true)
+{
+    global = new QVector<QSettings*>();
+    global->append(new QSettings());
+    global->append(new QSettings());
 }
 
 GSettings::~GSettings() {

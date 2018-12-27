@@ -415,6 +415,8 @@ public:
     // new one were the properties are distributed as explained above (this is to keep compatibility)
     GSettings(QString org, QString app);
     GSettings(QString file, QSettings::Format format);
+    //SaarComment
+    GSettings();
     ~GSettings();
 
     // standard access to global config

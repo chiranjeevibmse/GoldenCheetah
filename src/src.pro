@@ -16,6 +16,7 @@ include(gcconfig.pri)
 
 # You can also define your own local source to add to build
 HEADERS += $${LOCALHEADERS}
+
 SOURCES += $${LOCALSOURCES}
 
 ###=====================
@@ -23,7 +24,7 @@ SOURCES += $${LOCALSOURCES}
 ###=====================
 
 DEPENDPATH += .
-TEMPLATE = app
+TEMPLATE = lib
 TARGET = GoldenCheetah
 
 !isEmpty(APP_NAME) { TARGET = $${APP_NAME} }
@@ -81,7 +82,7 @@ lessThan(QT_MAJOR_VERSION, 5) {
 ###=======================================================================
 ### Directory Structure - Split into subdirs to be more manageable
 ###=======================================================================
-INCLUDEPATH += ./ANT ./Train ./FileIO ./Cloud ./Charts ./Metrics ./Gui ./Core ./Planning
+INCLUDEPATH += ./ANT ./Train ./FileIO ./Cloud ./Charts ./Metrics ./Gui ./Core ./Planning ./JavaInterface
 QMAKE_CFLAGS_ISYSTEM =
 
 
@@ -90,7 +91,7 @@ QMAKE_CFLAGS_ISYSTEM =
 ###=======================================================================
 
 # qwt, qxt, libz, json, lmfit and qwtcurve
-INCLUDEPATH += ../qwt/src ../qxt/src ../qtsolutions/json ../qtsolutions/qwtcurve ../lmfit ../levmar
+INCLUDEPATH += ../qwt/src ../qxt/src ../qtsolutions/json ../qtsolutions/qwtcurve ../lmfit ../levmar ../Headers
 DEFINES += QXT_STATIC
 
 # to make sure we are toolchain neutral we NEVER refer to a lib
@@ -654,7 +655,14 @@ LEXSOURCES  += Core/DataFilter.l \
                FileIO/JsonRideFile.l \
                Core/RideDB.l
 
+HEADERS += ../Headers/jni.h \
+           JavaInterface/ridesinterface.h \
+           JavaInterface/matricsinterface.h \
+           JavaInterface/com_svlabs_svt_ride_SaarRideFileReader.h \
+           JavaInterface/com_svlabs_svt_matrics_SaarMatricsGenerator.h
 
+SOURCES +=  JavaInterface/com_svlabs_svt_ride_SaarRideFileReader.cpp \
+            JavaInterface/com_svlabs_svt_matrics_SaarMatricsGenerator.cpp
 ###=========================================
 ### HEADER FILES [scanned by qmake, for moc]
 ###=========================================
